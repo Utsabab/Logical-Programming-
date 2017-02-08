@@ -14,6 +14,10 @@ sum-up-numbers-simple([H|T], N) :-
 /*Question 2:*/
 sum-up-numbers-general([], 0).
 
+sum-up-numbers-general([H|T], N) :-
+	number(H),
+	sum-up-numbers-general(T, N),
+	N is Rest + H.
 
 
 
