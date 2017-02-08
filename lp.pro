@@ -16,8 +16,21 @@ sum-up-numbers-general([], 0).
 
 sum-up-numbers-general([H|T], N) :-
 	number(H),
-	sum-up-numbers-general(T, N),
+	sum-up-numbers-general(T, Rest),
 	N is Rest + H.
+
+sum-up-numbers-general([H|T], N) :- 
+	not(number(H)),
+	not(is_list(H)),
+	sum-up-numbers-general(T, R),
+	N is 0 + R.
+
+
+
+
+
+
+
 
 
 
