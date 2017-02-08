@@ -36,23 +36,23 @@ sum-up-numbers-general([H|T], N) :-	/*If H is not a number but is a list then ad
 
 get_min([X], X).
 
-get_min([X,Y|Z], Rest1),
+get_min([X,Y|Z], Rest1) :-
 	number(X),
 	number(Y),
 	X =< Y,
 	get_min([X|Z], Rest1).
 
-get_min([X,Y|Z], Rest1),
+get_min([X,Y|Z], Rest1) :-
 	not(number(X)),
 	number(Y),
 	get_min([Y|Z], Rest1).
 
-get_min([X,Y|Z], Rest1),
+get_min([X,Y|Z], Rest1) :-
 	not(number(Y)),
 	number(X),
 	get_min([X|Z], Rest1).
 
-get_min([X,Y|Z], Rest1),
+get_min([X,Y|Z], Rest1) :-
 	number(X),
 	number(Y),
 	X > Y,
@@ -61,10 +61,6 @@ get_min([X,Y|Z], Rest1),
 /*comparison_func([H|T], Rest1),*/
 
 
-
-
-
-/*min-above-min([], [], 0).*/
 
 
 
