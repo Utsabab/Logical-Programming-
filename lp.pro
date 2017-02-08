@@ -36,56 +36,40 @@ sum-up-numbers-general([H|T], N) :-	/*If H is not a number but is a list then ad
 
 get_min([X], X).
 
-get_min([X,Y|Z], Rest1) :-
+get_min([X,Y|Z], Rest1) :-	/*IF X and Y are both numbers and if X is smaller than Y, X is minimum*/
 	number(X),
 	number(Y),
 	X =< Y,
 	get_min([X|Z], Rest1).
 
-get_min([X,Y|Z], Rest1) :-
+get_min([X,Y|Z], Rest1) :-	/*If X is not a number and Y is then Y is minimum*/
 	not(number(X)),
 	number(Y),
 	get_min([Y|Z], Rest1).
 
-get_min([X,Y|Z], Rest1) :-
+get_min([X,Y|Z], Rest1) :-	/*If Y is not a number and X is then X is minimum*/
 	not(number(Y)),
 	number(X),
 	get_min([X|Z], Rest1).
 
-get_min([X,Y|Z], Rest1) :-
+get_min([X,Y|Z], Rest1) :-	/*If X and Y are both numbers and if X is greater than Y, Y is minimum*/
 	number(X),
 	number(Y),
 	X > Y,
 	get_min([Y|Z], Rest1).
 
-/*comparison_func([H|T], Rest1),*/
+comparison_func([], Min, []). 
 
+comparison_func([H|T], Min, Rest) :- /*If H is not a number, recursive on the function with the tail of the list*/
+	not(number(H)),
+	comparison_func(T, Min, Rest).
 
+comparison_func([H|T], Min, [H|Rest]) :-	/*If H is a number and is greater than min then is added to the list Rest*/
+	number(H), 
+	H > Min,
+	comparison_func(T, Min, Rest).
 
+comparison_func([_|T], Min, Rest) :-	/*If H is a number and is less than min, recursive on function with the tail of the list*/
+	comparison_func(T, Min, Rest).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+min-above-min()
