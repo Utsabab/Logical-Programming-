@@ -15,7 +15,11 @@
 
 sum-up-numbers-simple([], 0).
 
-sum-up-numbers-simple([isinteger(H))|T], N) :- sum-up-numbers-simple(T, N), Rest = N - H.
+sum-up-numbers-simple([not(number(H))|T], N) :- 
+	sum-up-numbers-simple(T, R),
+	N is 0 + R.
+
+sum-up-numbers-simple([number(H))|T], N) :- sum-up-numbers-simple(T, Rest), Rest = N - H.
 
 /*sum-up-numbers-simple([isInteger(H)|T], N) :-*/ 
 
