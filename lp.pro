@@ -1,18 +1,4 @@
-/*friend(aalu, pande).*/
-
-/*father(mukunde, thule).*/
-/*father(mukunde, sane).*/
-
-
-
-
-/*parent(mukunde, thule) :- father(mukunde, thule).*/
-/*parent(mukunde, sane) :- father(mukunde, sane).*/
-/*siblings(thule, sane) :- parent(mukunde, thule), parent(mukunde, sane).*/
-
-
-/*sum-up-numbers-simple(L, N).*/
-
+/*Question 1:*/
 sum-up-numbers-simple([], 0).
 
 sum-up-numbers-simple([H|T], N) :- 
@@ -25,7 +11,15 @@ sum-up-numbers-simple([H|T], N) :-
 	sum-up-numbers-simple(T, Rest), 
 	N is Rest + H.
 
-/*sum-up-numbers-simple([isInteger(H)|T], N) :-*/ 
+/*Question 2:*/
+sum-up-numbers-general([], 0).
+
+
+
+
+
+
+
 
 
 
