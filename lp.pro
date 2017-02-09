@@ -37,10 +37,10 @@ sum-up-numbers-general([H|T], N) :-	/*If H is not a number but is a list then ad
 min-above-min(L1, [], N) :-	/*If the List2 is empty, returns min value from L1*/
 	get_min(L1, N).
 
-min-above-min([], L2, N) :-	/*If the list1 is empty, returns 1"
+min-above-min([], L2, N) :-	/*If the list1 is empty, returns -1"*/
 	N is -1.
 	
-min-above-min(L1, L2, N) :-	/*Get the minimum number from List2, compare it with the list1 and get the new_list with numbers greater than minimum number from List2 and find the 									minimum of new_list*/
+min-above-min(L1, L2, N) :-	/*Gets the minimum number from List2, compare it with the list1 and get the new_list with numbers greater than minimum number from List2 and find the 									minimum of new_list*/
 	get_min(L2, Min_num),
 	comparison_func(L1, Min_num, New_list),
 	get_min(New_list, N).
