@@ -114,7 +114,10 @@ common_list([H|T], List2, Same) :-	/*If the head of the list1 is not a member of
 	not(member(H, List2)),
 	common_list(T, List2, Same).
 
-
+common-unique-elements(L1, L2, N) :-	/*Flattens the L1 and L2 and returns the common elements from the list*/
+	makelistflat_func(L1, Flatlist1),
+	makelistflat_func(L2, Flatlist2),
+	common_list(Flatlist1, Flatlist2, N).
 
 	
 
