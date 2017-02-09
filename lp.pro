@@ -93,15 +93,17 @@ comparison_func([_|T], Min, Rest) :-	/*If H is a number and is less than min, re
 makelistflat_func([], []).	/*If the List is empty, returns empty flatlist.*/
 
 
-makelist_func([H|T], Flatlist) :-  /*If the head is sublist, recursion on Head to flatten the list and takes tail of the list, recursion on it to flatten the list.*/
+makelistflat_func([H|T], Flatlist) :-  /*If the head is sublist, recursion on Head to flatten the list and takes tail of the list, recursion on it to flatten the list.*/
 	is_list(H),
-	makelist_func(H, Flatlist1),
-	makelist_func(T, Flatlist2),
+	makelistflat_func(H, Flatlist1),
+	makelistflat_func(T, Flatlist2),
 	append(Flatlist1, Flatlist2, Flatlist).
 	
-makelist_func([H|T], Flatlist) :-
+makelistflat_func([H|T], Flatlist) :-	/*If the Head is not a list, adds head to the list and recurson on tail.*/
 	not(is_list(H)),
-	makelist(H, Flatlist).
+	makelistflat_func(T, Flatlist1),
+	append([H], Flatlist1, Flatlist).
+
 
 
 
