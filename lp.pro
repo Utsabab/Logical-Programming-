@@ -72,7 +72,7 @@ get_min([X,Y|Z], Rest1) :- 	/*If the both lists are not number, takes the rest o
 	not(number(Y)),
 	get_min(Z, Rest1).
 
-comparison_func([], Min, []). 
+comparison_func([], _, []). 
 
 comparison_func([H|T], Min, Rest) :- /*If H is not a number, recursive on the function with the tail of the list*/
 	not(number(H)),
@@ -103,6 +103,20 @@ makelistflat_func([H|T], Flatlist) :-	/*If the Head is not a list, adds head to 
 	not(is_list(H)),
 	makelistflat_func(T, Flatlist1),
 	append([H], Flatlist1, Flatlist).
+
+common_list([], _, []).	/*If the List1 is empty and List2 is empty as well, returns empty list*/
+
+common_list([H|T], List2, [H|Same]) :- 	/*If the Head of the List1 is the member of List2, adds it to the new list Same.*/
+	member(H, List2),
+	common_list(T, List2, Same).
+
+common_list([H|T], List2, Same) :-	/*If the head of the list1 is not a member of List2, recursion on tail of List1*/
+	not(member(H, List2)),
+	common_list(T, List2, Same).
+
+
+
+	
 
 
 
