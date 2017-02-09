@@ -67,7 +67,7 @@ get_min([X,Y|Z], Rest1) :-	/*If X and Y are both numbers and if X is greater tha
 	X > Y,
 	get_min([Y|Z], Rest1).
 
-get_min([X,Y|Z], Rest1) :-
+get_min([X,Y|Z], Rest1) :- 	/*If the both lists are not number, takes the rest of the list and recursion.*/
 	not(number(X)),
 	not(number(Y)),
 	get_min(Z, Rest1).
@@ -78,10 +78,11 @@ comparison_func([H|T], Min, Rest) :- /*If H is not a number, recursive on the fu
 	not(number(H)),
 	comparison_func(T, Min, Rest).
 
-comparison_func([H|T], Min, [H|Rest]) :-	/*If H is a number and is greater than min then is added to the list Rest*/
+comparison_func([H|T], Min, Rest) :-	/*If H is a number and is greater than min then is added to the list Rest*/
 	number(H), 
 	H > Min,
-	comparison_func(T, Min, Rest).
+	comparison_func(T, Min, Rest1),
+	append([H], Rest1, Rest).
 
 comparison_func([_|T], Min, Rest) :-	/*If H is a number and is less than min, recursive on function with the tail of the list*/
 	comparison_func(T, Min, Rest).
@@ -96,8 +97,11 @@ makelist_func([H|T], Flatlist) :-  /*If the head is sublist, recursion on Head t
 	is_list(H),
 	makelist_func(H, Flatlist1),
 	makelist_func(T, Flatlist2),
-	Flatlist is Flatlist1 + Flatlist2.
+	append(Flatlist1, Flatlist2, Flatlist).
+	
+makelist_func([H|T], Flatlist) :-
+	not(is_list(H)),
+	makelist(H, Flatlist).
 
-ma
 
 
