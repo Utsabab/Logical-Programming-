@@ -37,9 +37,7 @@ sum-up-numbers-general([H|T], N) :-	/*If H is not a number but is a list then ad
 min-above-min(L1, [], N) :-	/*If the List2 is empty, returns min value from L1*/
 	get_min(L1, N).
 
-min-above-min([], L2, N) :-	/*If the list1 is empty, returns -1"*/
-	N is -1.
-	
+
 min-above-min(L1, L2, N) :-	/*Gets the minimum number from List2, compare it with the list1 and get the new_list with numbers greater than minimum number from List2 and find the 									minimum of new_list*/
 	get_min(L2, Min_num),
 	comparison_func(L1, Min_num, New_list),
@@ -69,6 +67,11 @@ get_min([X,Y|Z], Rest1) :-	/*If X and Y are both numbers and if X is greater tha
 	X > Y,
 	get_min([Y|Z], Rest1).
 
+get_min([X,Y|Z], Rest1) :-
+	not(number(X)),
+	not(number(Y)),
+	get_min(Z, Rest1).
+
 comparison_func([], Min, []). 
 
 comparison_func([H|T], Min, Rest) :- /*If H is not a number, recursive on the function with the tail of the list*/
@@ -82,5 +85,19 @@ comparison_func([H|T], Min, [H|Rest]) :-	/*If H is a number and is greater than 
 
 comparison_func([_|T], Min, Rest) :-	/*If H is a number and is less than min, recursive on function with the tail of the list*/
 	comparison_func(T, Min, Rest).
+
+
+/*Question4: */
+
+makelistflat_func([], []).	/*If the List is empty, returns empty flatlist.*/
+
+
+makelist_func([H|T], Flatlist) :-  /*If the head is sublist, recursion on Head to flatten the list and takes tail of the list, recursion on it to flatten the list.*/
+	is_list(H),
+	makelist_func(H, Flatlist1),
+	makelist_func(T, Flatlist2),
+	Flatlist is Flatlist1 + Flatlist2.
+
+ma
 
 
